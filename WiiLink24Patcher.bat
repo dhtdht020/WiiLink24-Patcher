@@ -33,8 +33,7 @@ set s=NUL
 
 set /a sdcardstatus=0
 set sdcard=NUL
-set line=---------------------------------------------------------------------------------------------------------------------------
-
+set line=
 :: Free space requirements
 	set cd_temp=%cd%
 	set running_on_drive=%cd_temp:~0,1%
@@ -72,13 +71,7 @@ if not exist "%TempStorage%" md "%TempStorage%"
 
 set chcp_enable=0
 
-echo.
 echo .. Checking for SD Card
-echo   :--------------------------------------------------------------------------------:
-echo   : Can you see an error box? Press `Continue`.                                    :
-echo   : There's nothing to worry about, everything is going ok. This error is normal.  :
-echo   :--------------------------------------------------------------------------------:
-echo.
 echo Checking now...
 goto begin_main_refresh_sdcard
 
@@ -313,127 +306,12 @@ set tempgotonext=begin_main
 goto detect_sd_card
 
 :begin_main
-cls
 mode %mode%
-echo %header%
-echo              `..````
-echo              yNNNNNNNNMNNmmmmdddhhhyyyysssooo+++/:--.`
-echo              ddmNNd:dNMMMMNMMMMMMMMMMMMMMMMMMMMMMMMMMs
-echo              hNNNNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMd
-echo             `mdmNNy dNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM+    WiiLink24 Patcher
-echo             .mmmmNs mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM:
-echo             :mdmmN+`mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM.  1. Start
-echo             /mmmmN:-mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN   2. Credits
-echo             ommmmN.:mMMMMMMMMMMMMmNMMMMMMMMMMMMMMMMMd   
-if not "%sdcard%"=="NUL" echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy   Detected SD Card: %sdcard%:\
-if "%sdcard%"=="NUL" echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy   Could not detect your SD Card.
-echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+   R. Refresh ^| If incorrect, you can change later.   	
-echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+
-echo             mmmmms smMMMMMMMMMmddMMmmNmNMMMMMMMMMMMM;
-echo            `mmmmmo hNMMMMMMMMMmddNMMMNNMMMMMMMMMMMMM.  
-echo            -mmmmm/ dNMMMMMMMMMNmddMMMNdhdMMMMMMMMMMN
-echo            :mmmmm-`mNMMMMMMMMNNmmmNMMNmmmMMMMMMMMMMd   
-echo            :mmmmm-`mNMMMMMMMMNNmmmNMMNmmmMMMMMMMMMMd
-echo            +mmmmN.-mNMMMMMMMMMNmmmmMMMMMMMMMMMMMMMMy
-echo            smmmmm`/mMMMMMMMMMNNmmmmNMMMMNMMNMMMMMNmy.
-echo            hmmmmd`omMMMMMMMMMNNmmmNmMNNMmNNNNMNdhyhh.
-echo            mmmmmh ymMMMMMMMMMNNmmmNmNNNMNNMMMMNyyhhh`
-echo           `mmmmmy hmMMNMNNMMMNNmmmmmdNMMNmmMMMMhyhhy
-echo           -mddmmo`mNMNNNNMMMNNNmdyoo+mMMMNmNMMMNyyys
-echo           :mdmmmo-mNNNNNNNNNNdyo++sssyNMMMMMMMMMhs+-
-echo          .+mmdhhmmmNNNNNNmdysooooosssomMMMNNNMMMm
-echo          o/ossyhdmmNNmdyo+++oooooosssoyNMMNNNMMMM+
-echo          o/::::::://++//+++ooooooo+oo++mNMMmNNMMMm
-echo         `o//::::::::+////+++++++///:/+shNMMNmNNmMM+
-echo         .o////////::+++++++oo++///+syyyymMmNmmmNMMm
-echo         -+//////////o+ooooooosydmdddhhsosNMMmNNNmho            `:/
-echo         .+++++++++++ssss+//oyyysso/:/shmshhs+:.          `-/oydNNNy
-echo           `..-:/+ooss+-`          +mmhdy`           -/shmNNNNNdy+:`
-echo                   `.              yddyo++:    `-/oymNNNNNdy+:`
-echo                                   -odhhhhyddmmmmmNNmhs/:`
-echo                                     :syhdyyyyso+/-`
-set /p s=Type a number that you can see above next to the command and hit ENTER: 
-if %s%==1 goto begin_main1
-if %s%==2 goto credits
-if %s%==r goto begin_main_refresh_sdcard
-if %s%==R goto begin_main_refresh_sdcard
-if %s%==exit exit
-goto begin_main
-:credits
-cls
-echo %header%
-echo              `..````                                     
-echo %line%
-echo  WiiLink24 Patcher v%version%
-echo   Created by:
-echo.
-echo  - KcrPL
-echo    Windows Patcher, UI, scripts.
-echo. 
-echo  - Joshua MacDonald
-echo    xdelta
-echo.    
-echo  - person66
-echo    Sharpii
-echo.    
-echo  For the entire WiiLink24 Community.
-echo  Want to contact us? Join our Discord server at https://discord.gg/n4ta3w6
-echo %line%
-echo            hmmmmd`omMMMMMMMMMNNmmmNmMNNMmNNNNMNdhyhh.
-echo            mmmmmh ymMMMMMMMMMNNmmmNmNNNMNNMMMMNyyhhh`
-echo           `mmmmmy hmMMNMNNMMMNNmmmmmdNMMNmmMMMMhyhhy
-echo           -mddmmo`mNMNNNNMMMNNNmdyoo+mMMMNmNMMMNyyys
-echo           :mdmmmo-mNNNNNNNNNNdyo++sssyNMMMMMMMMMhs+-
-echo          .+mmdhhmmmNNNNNNmdysooooosssomMMMNNNMMMm
-echo          o/ossyhdmmNNmdyo+++oooooosssoyNMMNNNMMMM+
-echo          o/::::::://++//+++ooooooo+oo++mNMMmNNMMMm
-echo         `o//::::::::+////+++++++///:/+shNMMNmNNmMM+
-echo         .o////////::+++++++oo++///+syyyymMmNmmmNMMm
-echo         -+//////////o+ooooooosydmdddhhsosNMMmNNNmho            `:/
-echo         .+++++++++++ssss+//oyyysso/:/shmshhs+:.          `-/oydNNNy
-echo           `..-:/+ooss+-`          +mmhdy`           -/shmNNNNNdy+:`
-echo                   `.              yddyo++:    `-/oymNNNNNdy+:`
-echo                                   -odhhhhyddmmmmmNNmhs/:`
-echo                                     :syhdyyyyso+/-`
-pause>NUL
+goto begin_main1
 goto begin_main
 :begin_main_download_curl
-cls
-echo %header%
-echo.
-echo              `..````                                     :-------------------------:
-echo              yNNNNNNNNMNNmmmmdddhhhyyyysssooo+++/:--.`    Downloading curl.
-echo              hNNNNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMd    Please wait...
-echo              ddmNNd:dNMMMMNMMMMMMMMMMMMMMMMMMMMMMMMMMs   :-------------------------:
-echo             `mdmNNy dNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM+   
-echo             .mmmmNs mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM:   File 1 [3.5MB] out of 1
-echo             :mdmmN+`mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM.   0%% [          ]
-echo             /mmmmN:-mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN
-echo             ommmmN.:mMMMMMMMMMMMMmNMMMMMMMMMMMMMMMMMd
-echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy
-echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+
-echo             mmmmms smMMMMMMMMMmddMMmmNmNMMMMMMMMMMMM:
-echo            `mmmmmo hNMMMMMMMMMmddNMMMNNMMMMMMMMMMMMM.
-echo            -mmmmm/ dNMMMMMMMMMNmddMMMNdhdMMMMMMMMMMN
-echo            :mmmmm-`mNMMMMMMMMNNmmmNMMNmmmMMMMMMMMMMd
-echo            +mmmmN.-mNMMMMMMMMMNmmmmMMMMMMMMMMMMMMMMy
-echo            smmmmm`/mMMMMMMMMMNNmmmmNMMMMNMMNMMMMMNmy.
-echo            hmmmmd`omMMMMMMMMMNNmmmNmMNNMmNNNNMNdhyhh.
-echo            mmmmmh ymMMMMMMMMMNNmmmNmNNNMNNMMMMNyyhhh`
-echo           `mmmmmy hmMMNMNNMMMNNmmmmmdNMMNmmMMMMhyhhy
-echo           -mddmmo`mNMNNNNMMMNNNmdyoo+mMMMNmNMMMNyyys
-echo           :mdmmmo-mNNNNNNNNNNdyo++sssyNMMMMMMMMMhs+-
-echo          .+mmdhhmmmNNNNNNmdysooooosssomMMMNNNMMMm
-echo          o/ossyhdmmNNmdyo+++oooooosssoyNMMNNNMMMM+
-echo          o/::::::://++//+++ooooooo+oo++mNMMmNNMMMm
-echo         `o//::::::::+////+++++++///:/+shNMMNmNNmMM+
-echo         .o////////::+++++++oo++///+syyyymMmNmmmNMMm
-echo         -+//////////o+ooooooosydmdddhhsosNMMmNNNmho            `:/
-echo         .+++++++++++ssss+//oyyysso/:/shmshhs+:.          `-/oydNNNy
-echo           `..-:/+ooss+-`          +mmhdy`           -/shmNNNNNdy+:`
-echo                   `.              yddyo++:    `-/oymNNNNNdy+:`
-echo                                   -odhhhhyddmmmmmNNmhs/:`
-echo                                     :syhdyyyyso+/-`
+echo Downloading curl. Please wait...
+echo [3.5 MB] 0%% [          ]
 call powershell -command (new-object System.Net.WebClient).DownloadFile('%FilesHostedOn%/curl.exe', 'curl.exe')
 set /a temperrorlev=%errorlevel%
 if not %temperrorlev%==0 goto begin_main_download_curl_error
@@ -441,84 +319,21 @@ if not %temperrorlev%==0 goto begin_main_download_curl_error
 goto begin_main1
 
 :begin_main_download_curl_error
-cls
-echo %header%                                                                
-echo              `..````                                                  
-echo              yNNNNNNNNMNNmmmmdddhhhyyyysssooo+++/:--.`                
-echo              hNNNNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMd                
-echo              ddmNNd:dNMMMMNMMMMMMMMMMMMMMMMMMMMMMMMMMs                
-echo             `mdmNNy dNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM+        
-echo             .mmmmNs mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM:                
-echo             :mdmmN+`mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM.                
-echo             /mmmmN:-mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN            
-echo             ommmmN.:mMMMMMMMMMMMMmNMMMMMMMMMMMMMMMMMd                 
-echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy                 
-echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+                 
-echo ---------------------------------------------------------------------------------------------------------------------------
-echo    /---\   ERROR.
-echo   /     \  There was an error while downloading curl.
-echo  /   ^!   \ 
-echo  --------- We will now open a website that will download curl.exe.
-echo            Please move curl.exe to the folder where WiiLink24Patcher.bat is and restart the patcher.
+echo ERROR: There was an error while downloading curl.
+echo We will now open a website that will download curl.exe.
+echo Please move curl.exe to the folder where WiiLink24Patcher.bat is and restart the patcher.
 echo.
-echo       Press any key to open download page in browser and to return to menu.
-echo ---------------------------------------------------------------------------------------------------------------------------
-echo          .+mmdhhmmmNNNNNNmdysooooosssomMMMNNNMMMm                     
-echo          o/ossyhdmmNNmdyo+++oooooosssoyNMMNNNMMMM+                    
-echo          o/::::::://++//+++ooooooo+oo++mNMMmNNMMMm                    
-echo         `o//::::::::+////+++++++///:/+shNMMNmNNmMM+                   
-echo         .o////////::+++++++oo++///+syyyymMmNmmmNMMm                   
-echo         -+//////////o+ooooooosydmdddhhsosNMMmNNNmho            `:/    
-echo         .+++++++++++ssss+//oyyysso/:/shmshhs+:.          `-/oydNNNy   
-echo           `..-:/+ooss+-`          +mmhdy`           -/shmNNNNNdy+:`   
-echo                   `.              yddyo++:    `-/oymNNNNNdy+:`        
-echo                                   -odhhhhyddmmmmmNNmhs/:`             
-echo                                     :syhdyyyyso+/-`                   
+echo Press any key to open download page in browser and exit.
 pause>NUL
 start %FilesHostedOn%/curl.exe
-goto begin_main
+exit
 
 
 :begin_main1
 curl
 if not %errorlevel%==2 goto begin_main_download_curl
 
-cls
-echo %header%
-echo.
-echo              `..````                                     :-------------------------:
-echo              yNNNNNNNNMNNmmmmdddhhhyyyysssooo+++/:--.`    Checking for updates...
-echo              hNNNNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMd   :-------------------------:
-echo              ddmNNd:dNMMMMNMMMMMMMMMMMMMMMMMMMMMMMMMMs
-echo             `mdmNNy dNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM+
-echo             .mmmmNs mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM:
-echo             :mdmmN+`mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM.
-echo             /mmmmN:-mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN
-echo             ommmmN.:mMMMMMMMMMMMMmNMMMMMMMMMMMMMMMMMd
-echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy
-echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+
-echo             mmmmms smMMMMMMMMMmddMMmmNmNMMMMMMMMMMMM:
-echo            `mmmmmo hNMMMMMMMMMmddNMMMNNMMMMMMMMMMMMM.
-echo            -mmmmm/ dNMMMMMMMMMNmddMMMNdhdMMMMMMMMMMN
-echo            :mmmmm-`mNMMMMMMMMNNmmmNMMNmmmMMMMMMMMMMd
-echo            +mmmmN.-mNMMMMMMMMMNmmmmMMMMMMMMMMMMMMMMy
-echo            smmmmm`/mMMMMMMMMMNNmmmmNMMMMNMMNMMMMMNmy.
-echo            hmmmmd`omMMMMMMMMMNNmmmNmMNNMmNNNNMNdhyhh.
-echo            mmmmmh ymMMMMMMMMMNNmmmNmNNNMNNMMMMNyyhhh`
-echo           `mmmmmy hmMMNMNNMMMNNmmmmmdNMMNmmMMMMhyhhy
-echo           -mddmmo`mNMNNNNMMMNNNmdyoo+mMMMNmNMMMNyyys
-echo           :mdmmmo-mNNNNNNNNNNdyo++sssyNMMMMMMMMMhs+-
-echo          .+mmdhhmmmNNNNNNmdysooooosssomMMMNNNMMMm
-echo          o/ossyhdmmNNmdyo+++oooooosssoyNMMNNNMMMM+
-echo          o/::::::://++//+++ooooooo+oo++mNMMmNNMMMm
-echo         `o//::::::::+////+++++++///:/+shNMMNmNNmMM+
-echo         .o////////::+++++++oo++///+syyyymMmNmmmNMMm
-echo         -+//////////o+ooooooosydmdddhhsosNMMmNNNmho            `:/
-echo         .+++++++++++ssss+//oyyysso/:/shmshhs+:.          `-/oydNNNy
-echo           `..-:/+ooss+-`          +mmhdy`           -/shmNNNNNdy+:`
-echo                   `.              yddyo++:    `-/oymNNNNNdy+:`
-echo                                   -odhhhhyddmmmmmNNmhs/:`
-echo                                     :syhdyyyyso+/-`
+echo Checking for updates...
 		title %string78% :          :
 :: Update script.
 set updateversion=0.0.0
@@ -591,55 +406,12 @@ For /F "Delims=" %%A In ('curl -f -L -s --insecure "%FilesHostedOn%/UPDATE/prere
 
 goto 1
 :server_dead
-cls
-echo %header%                                                                
-echo.                 
-echo.                 
-echo.                 
-echo.                 
-echo.                 
-echo.                 
-echo.                 
-echo.                 
-echo.                 
-echo.                 
-echo.                 
-echo.
-echo %line%
-echo    /---\   ERROR.
-echo   /     \  WiiLink24 Server is currently offline.
-echo  /   ^^!   \ 
-echo  --------- It appears that you have an active Internet connection but WiiLink24 Server is currently offline or unavailable.
-echo            Please come back later^^!
-echo.
-echo       Press any key to return to main menu.
-echo %line%
+echo ERROR: WiiLink24 Server is currently offline. It appears that you have an active Internet connection but WiiLink24 Server is currently offline or unavailable. Please come back later^^!
 pause>NUL
 goto begin_main
 
 :no_internet_connection
-cls
-echo %header%                                                                
-echo.                 
-echo.                 
-echo.                 
-echo.                 
-echo.                 
-echo.                 
-echo.                 
-echo.                 
-echo.                 
-echo.                 
-echo.                 
-echo.
-echo %line%
-echo    /---\   ERROR.
-echo   /     \  There is no internet connection.
-echo  /   ^^!   \ 
-echo  --------- Could not connect to remote server.
-echo            Check your internet connection or check if your firewall isn't blocking curl.
-echo.
-echo       Press any key to return to main menu.
+echo ERROR: There is no internet connection.
 echo %line%
 pause>NUL
 goto begin_main
@@ -647,7 +419,7 @@ goto begin_main
 
 :update_notice
 set /a update=1
-cls	
+cls
 echo %header%
 echo.                                                                       
 echo              `..````                                                  
@@ -662,7 +434,7 @@ echo             ommmmN.:mMMMMMMMMMMMMmNMMMMMMMMMMMMMMMMMd
 echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy                 
 echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+                 
 echo ------------------------------------------------------------------------------------------------------------------------------
-echo    /---\   An Update is available.
+echo    /---\   An Update is available. (WARNING: THIS WILL REPLACE MODDED VERSION WITH NORMAL ONE)
 echo   /     \  An Update for this program is available. We suggest updating the WiiLink24 Patcher to the latest version.
 echo  /   ^^!   \ 
 echo  ---------  Current version: %version%
@@ -688,41 +460,9 @@ if %s%==2 goto 1
 if %s%==3 goto whatsnew
 goto update_notice
 :update_files
-cls
 echo %header%
-echo.                                                                       
-echo              `..````                                                  
-echo              yNNNNNNNNMNNmmmmdddhhhyyyysssooo+++/:--.`                
-echo              hNNNNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMd                
-echo              ddmNNd:dNMMMMNMMMMMMMMMMMMMMMMMMMMMMMMMMs                
-echo             `mdmNNy dNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM+        
-echo             .mmmmNs mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM:                
-echo             :mdmmN+`mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM.                
-echo             /mmmmN:-mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN            
-echo             ommmmN.:mMMMMMMMMMMMMmNMMMMMMMMMMMMMMMMMd                 
-echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy                 
-echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+                 
-echo ------------------------------------------------------------------------------------------------------------------------------
-echo    /---\   Updating...
-echo   /     \  Please wait...
-echo  /   ^^!   \ 
-echo  --------- WiiLink24 Patcher will restart shortly...
-echo.  
-echo.
-echo ------------------------------------------------------------------------------------------------------------------------------
-echo           -mddmmo`mNMNNNNMMMNNNmdyoo+mMMMNmNMMMNyyys                  
-echo           :mdmmmo-mNNNNNNNNNNdyo++sssyNMMMMMMMMMhs+-                  
-echo          .+mmdhhmmmNNNNNNmdysooooosssomMMMNNNMMMm                     
-echo          o/ossyhdmmNNmdyo+++oooooosssoyNMMNNNMMMM+                    
-echo          o/::::::://++//+++ooooooo+oo++mNMMmNNMMMm                    
-echo         `o//::::::::+////+++++++///:/+shNMMNmNNmMM+                   
-echo         .o////////::+++++++oo++///+syyyymMmNmmmNMMm                   
-echo         -+//////////o+ooooooosydmdddhhsosNMMmNNNmho            `:/    
-echo         .+++++++++++ssss+//oyyysso/:/shmshhs+:.          `-/oydNNNy   
-echo           `..-:/+ooss+-`          +mmhdy`           -/shmNNNNNdy+:`   
-echo                   `.              yddyo++:    `-/oymNNNNNdy+:`        
-echo                                   -odhhhhyddmmmmmNNmhs/:`             
-echo                                     :syhdyyyyso+/-`
+echo Updating... Please wait... WiiLink24 Patcher will restart shortly...
+
 :update_1
 curl -f -L -s -S --insecure "%FilesHostedOn%/UPDATE/update_assistant.bat" --output "update_assistant.bat"
 	set temperrorlev=%errorlevel%
@@ -730,45 +470,11 @@ curl -f -L -s -S --insecure "%FilesHostedOn%/UPDATE/update_assistant.bat" --outp
 start update_assistant.bat -WiiLink24_Patcher
 exit
 :error_updating
-cls
 echo %header%
-echo.                                                                       
-echo              `..````                                                  
-echo              yNNNNNNNNMNNmmmmdddhhhyyyysssooo+++/:--.`                
-echo              hNNNNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMd                
-echo              ddmNNd:dNMMMMNMMMMMMMMMMMMMMMMMMMMMMMMMMs                
-echo             `mdmNNy dNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM+        
-echo             .mmmmNs mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM:                
-echo             :mdmmN+`mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM.                
-echo             /mmmmN:-mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN            
-echo             ommmmN.:mMMMMMMMMMMMMmNMMMMMMMMMMMMMMMMMd                 
-echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy                 
-echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+                 
-echo ------------------------------------------------------------------------------------------------------------------------------
-echo    /---\   ERROR.
-echo   /     \  There was an error while downloading the update assistant.
-echo  /   ^^!   \ 
-echo  --------- Press any key to return to main menu.
-echo.  
-echo.
-echo ------------------------------------------------------------------------------------------------------------------------------
-echo           -mddmmo`mNMNNNNMMMNNNmdyoo+mMMMNmNMMMNyyys                  
-echo           :mdmmmo-mNNNNNNNNNNdyo++sssyNMMMMMMMMMhs+-                  
-echo          .+mmdhhmmmNNNNNNmdysooooosssomMMMNNNMMMm                     
-echo          o/ossyhdmmNNmdyo+++oooooosssoyNMMNNNMMMM+                    
-echo          o/::::::://++//+++ooooooo+oo++mNMMmNNMMMm                    
-echo         `o//::::::::+////+++++++///:/+shNMMNmNNmMM+                   
-echo         .o////////::+++++++oo++///+syyyymMmNmmmNMMm                   
-echo         -+//////////o+ooooooosydmdddhhsosNMMmNNNmho            `:/    
-echo         .+++++++++++ssss+//oyyysso/:/shmshhs+:.          `-/oydNNNy   
-echo           `..-:/+ooss+-`          +mmhdy`           -/shmNNNNNdy+:`   
-echo                   `.              yddyo++:    `-/oymNNNNNdy+:`        
-echo                                   -odhhhhyddmmmmmNNmhs/:`             
-echo                                     :syhdyyyyso+/-`
+echo ERROR: There was an error while downloading the update assistant.
 pause>NUL
 goto begin_main
 :whatsnew
-cls
 if not exist %TempStorage%\whatsnew.txt goto whatsnew_notexist
 echo %header%
 echo ------------------------------------------------------------------------------------------------------------------------------
@@ -779,7 +485,6 @@ type "%TempStorage%\whatsnew.txt"
 pause>NUL
 goto update_notice
 :whatsnew_notexist
-cls
 echo %header%
 echo -----------------------------------------------------------------------------------------------------------------------------
 echo.
@@ -790,73 +495,21 @@ pause>NUL
 goto update_notice
 
 :1
-cls
-echo %header%
-echo %line%
 if exist "%TempStorage%\annoucement.txt" (
-	echo --- Announcement ---
+	echo Announcement:
 	type "%TempStorage%\annoucement.txt"
-	echo.
-	echo --------------------
 	)
-::if "%translation_download_error%"=="1" if not "%language%"=="English" ( 
-::echo :-----------------------------------------------------------------------:
-::echo : There was an error while downloading the up-to-date translation.      :
-::echo : Your language was reverted to English.                                :
-::echo :-----------------------------------------------------------------------:
-::echo.
-::set /a translation_download_error=0
-::)
-	set current_time=%time:~0,5%
-	if /i "%current_time%" GEQ " 5:00" if /i "%current_time%" LSS "13:00" echo Good morning %username%^^! Welcome to the WiiLink24 Patcher.
-	if /i "%current_time%" GEQ "13:00" if /i "%current_time%" LSS "18:00" echo Good afternoon %username%^^! Welcome to the WiiLink24 Patcher.
-	if /i "%current_time%" GEQ "18:00" if /i "%current_time%" LEQ "23:59" echo Good evening %username%^^! Welcome to the WiiLink24 Patcher.
-	if /i "%current_time%" GEQ " 0:00" if /i "%current_time%" LSS " 5:00" echo Good evening %username%^^! Welcome to the WiiLink24 Patcher.
-echo.
-echo What are we doing today?
-echo.
-echo 1. Install WiiLink24 on your Wii.
-echo   The patcher will guide you through the process of installing WiiLink24.
-echo.
-set /p s=Choose: 
-if "%s%"=="1" goto 1_install_wiilink24_1
-goto 1
 
-:disk_space_insufficient
-cls
-echo %header%                                                                
-echo.                 
-echo.                 
-echo.                 
-echo.                 
-echo.                 
-echo.                 
-echo.                 
-echo.                 
-echo.                 
-echo.                 
-echo.                 
-echo.
-echo %line%
-echo    /---\   ERROR.
-echo   /     \  There is not enough space on the disk to perform the operation.
-echo  /   ^!   \ Please free up some space and try again.
-echo  --------- 
-echo            Amount of free space required: %patching_size_required_megabytes%MB
-echo.
-echo       Press any key to return to main menu.
-echo %line%
+goto 1_install_wiilink24_1
+
+:disk_space_insufficient   
+echo ERROR: There is not enough space on the disk to perform the operation.
 pause>NUL
-goto begin_main
+exit
 
 
 :1_install_wiilink24_1
-cls
-echo %header%
-echo %line%
-echo.
-echo Please wait...
-echo Preparing...
+echo Checking if able to patch..
 :: Check if NUS is up
 curl -i -s http://nus.cdn.shop.wii.com/ccs/download/0001000248414741/tmd | findstr "HTTP/1.1" | findstr "500 Internal Server Error"
 if %errorlevel%==0 goto error_NUS_DOWN
@@ -872,125 +525,30 @@ if /i %free_drive_space_bytes% LSS %patching_size_required_bytes% goto disk_spac
 goto 1_install_wiilink24_2
 
 :1_install_wiilink24_2
-cls
 goto 1_install_wiilink24_3
-::Reserved for later	
-echo %header%
-echo %line%
-echo.
-echo Install WiiLink24.
-echo.
-echo Choose installation type:
-echo 1. Express (Recommended)
-echo   - This will patch every channel for later use on your Wii. This includes:
-echo     - Wii no Ma
-echo.
-echo 2. Custom
-echo   - You will be asked what you want to patch.
-set /p s=
-if %s%==1 goto 1_install_wiilink24_3
-if %s%==2 goto 1_install_wiilink24_choose_custom_install_type
-goto 2_auto_ask
 
 :1_install_wiilink24_3
 set /a wiinoma_enable=1
 
-cls
-echo %header%
-echo %line%
 echo.
-echo Hello %username%, welcome to the express installation of WiiLink24.
+echo Hello %username%, welcome to the express installation of WiiLink24. The patcher will prepare all the files you need. Meanwhile, go get a snack or watch a YouTube video.
 echo.
-echo The patcher will download any files that are required to run the patcher.
-echo The entire process should take about 1 to 3 minutes depending on your computer CPU and internet speed.
-echo.
-echo But before starting, you need to tell me one thing:
-echo.
-echo For Wii no Ma, what language do you want to download? 
-echo.
-echo 1. English
-echo 2. Japanese
-echo.
-set /p s=Choose: 
-if %s%==1 set /a region=1& goto 1_install_wiilink24_4
-if %s%==2 set /a region=2& goto 1_install_wiilink24_4
-goto 1_install_wiilink24_3
+set /a region=1& goto 1_install_wiilink24_4
 
 :1_install_wiilink24_4
-cls
-echo %header%
-echo %line%
-echo.
-echo Great^^!
-echo After passing this screen, any user interraction won't be needed so you can relax and let me do the work^^! :)
-echo.
-echo Hmm... one more thing. What was it? Ah^^! To make patching even easier, I can download everything straight to your SD Card.
-echo Just plug in your SD Card right now.
-echo.
-echo 1. Connected^^!
-echo 2. I can't connect the SD Card to my computer.
-echo.
-set /p s=Choose: 
-if %s%==1 set /a sdcardstatus=1& set tempgotonext=1_install_wiilink24_4_summary& goto detect_sd_card
-if %s%==2 set /a sdcardstatus=0& set /a sdcard=NUL& goto 1_install_wiilink24_4_summary
+echo User interraction won't be needed so you can relax and let me do the work^^! :)
+set /a sdcardstatus=0& set /a sdcard=NUL& goto 1_install_wiilink24_4_summary
 
 goto 1_install_wiilink24_4
 :1_install_wiilink24_4_summary
-cls
-echo %header%
-echo %line%
-echo.
-if %sdcardstatus%==0 echo Ayy caramba^^! No worries, though. You will be able to copy files later after patching.
-if %sdcardstatus%==1 if %sdcard%==NUL echo Hmm... looks like an SD Card wasn't found in your system. Please choose the `Change drive letter` option
-if %sdcardstatus%==1 if %sdcard%==NUL echo to set your SD Card drive letter manually.
-if %sdcardstatus%==1 if %sdcard%==NUL echo.
-if %sdcardstatus%==1 if %sdcard%==NUL echo Otherwise, starting patching will set copying to manual so you will have to copy them later.
-if %sdcardstatus%==1 if not %sdcard%==NUL echo Congrats^^! I've successfully detected your SD Card^^! Drive letter: %sdcard%
-if %sdcardstatus%==1 if not %sdcard%==NUL echo I will be able to automatically download and install everything on your SD Card^^!
-echo.
-echo The following process will download about 70MB of data.
-echo.
-
-echo What's next?
-if %sdcardstatus%==0 echo 1. Start Patching  2. Exit
-if %sdcardstatus%==1 if %sdcard%==NUL echo 1. Start patching 2. Exit 3. Change drive letter
-if %sdcardstatus%==1 if not %sdcard%==NUL echo 1. Start Patching 2. Exit 3. Change drive letter
-
-set /p s=Choose: 
-if %s%==1 goto 1_install_wiilink24_5_wad_folder
-if %s%==2 goto begin_main
-if %s%==3 goto 1_install_wiilink24_change_drive_letter
-goto 2_1_summary
-:1_install_wiilink24_change_drive_letter
-cls
-echo %header%
-echo %line%
-echo [*] SD Card
-echo.
-echo Current SD Card Letter: %sdcard%
-echo.
-echo Type in the new drive letter (e.g H) 
-set /p sdcard=
-goto 1_install_wiilink24_4_summary
+goto 1_install_wiilink24_5_wad_folder
 
 :1_install_wiilink24_5_wad_folder
 if not exist "WAD" goto 1_install_wiilink24_6
-cls
-echo %header%
-echo %line%
-echo.
-echo One more thing^^! I've detected WAD folder.
-echo I need to delete it.
-echo.
-echo Can I?
-echo 1. Yes
-echo 2. No
-set /p s=Choose: 
-if %s%==1 rmdir /s /q "WAD"& goto 1_install_wiilink24_6
-if %s%==2 goto 2_1_summary_wiiu
-goto 1_install_wiilink24_5_wad_folder
+echo WAD folder detected. Overwriting.
+rmdir /s /q "WAD"& goto 1_install_wiilink24_6
+
 :1_install_wiilink24_6
-cls
 set /a temperrorlev=0
 set /a counter_done=0
 set /a percent=0
@@ -1002,80 +560,45 @@ set /a progress_wiinoma=0
 set /a progress_digicam_print_channel=0
 set /a progress_finishing=0
 
-if "%prerelease_status%"=="1" goto 1_install_wiilink24_6_prerelease
+echo [*] Patching... this can take some time depending on the processing speed (CPU) of your computer.
+
 goto 1_install_wiilink24_7
 
-:1_install_wiilink24_6_prerelease
-cls
-echo %header%
-echo %line%
-echo.
-echo Hold up^^!
-echo You're using the patcher before it's official release.
-echo.
-echo Please extract the .zip containing .delta patches to this folder.
-echo They can be found in the developer channels in the Discord server.
-echo.
-echo 1. They're in place^^!
-echo 2. It's all just a mistake.
-echo.
-set /p s=Choose: 
-if %s%==1 goto 1_install_wiilink24_7
-if %s%==2 goto begin_main
-
 :1_install_wiilink24_7
-::if /i %percent% GTR 0 if /i %percent% LSS 10 set /a counter_done=0
-::if /i %percent% GTR 10 if /i %percent% LSS 20 set /a counter_done=1
-::if /i %percent% GTR 20 if /i %percent% LSS 30 set /a counter_done=2
-::if /i %percent% GTR 30 if /i %percent% LSS 40 set /a counter_done=3
-::if /i %percent% GTR 40 if /i %percent% LSS 50 set /a counter_done=4
-::if /i %percent% GTR 50 if /i %percent% LSS 60 set /a counter_done=5
-::if /i %percent% GTR 60 if /i %percent% LSS 70 set /a counter_done=6
-::if /i %percent% GTR 70 if /i %percent% LSS 80 set /a counter_done=7
-::if /i %percent% GTR 80 if /i %percent% LSS 90 set /a counter_done=8
-::if /i %percent% GTR 90 if /i %percent% LSS 100 set /a counter_done=9
-::if %percent%==100 set /a counter_done=10
 
 if %percent%==1 set counter_done=2
 if %percent%==2 set counter_done=5
 if %percent%==3 set counter_done=7
 if %percent%==4 set counter_done=8
 
+if %counter_done%==0 echo :          : 0%
+if %counter_done%==1 echo :-         : 10%
+if %counter_done%==2 echo :--        : 20%
+if %counter_done%==3 echo :---       : 30%
+if %counter_done%==4 echo :----      : 40%
+if %counter_done%==5 echo :-----     : 50%
+if %counter_done%==6 echo :------    : 60%
+if %counter_done%==7 echo :-------   : 70%
+if %counter_done%==8 echo :--------  : 80%
+if %counter_done%==9 echo :--------- : 90%
+if %counter_done%==10 echo :----------: 100%
 
-cls
-echo %header%
-echo ---------------------------------------------------------------------------------------------------------------------------
-echo  [*] Patching... this can take some time depending on the processing speed (CPU) of your computer.
-echo.
-echo    Progress:
-if %counter_done%==0 echo :          : 
-if %counter_done%==1 echo :-         : 
-if %counter_done%==2 echo :--        : 
-if %counter_done%==3 echo :---       : 
-if %counter_done%==4 echo :----      : 
-if %counter_done%==5 echo :-----     : 
-if %counter_done%==6 echo :------    : 
-if %counter_done%==7 echo :-------   : 
-if %counter_done%==8 echo :--------  : 
-if %counter_done%==9 echo :--------- : 
-if %counter_done%==10 echo :----------:
-echo.
-echo This will take some time...
-echo.
-if "%progress_downloading%"=="0" echo [ ] Downloading files
-if "%progress_downloading%"=="1" echo [X] Downloading files
-if "%progress_wiinoma%"=="0" echo [ ] Wii no Ma
-if "%progress_wiinoma%"=="1" echo [X] Wii no Ma
-if "%progress_digicam_print_channel%"=="0" echo [ ] Digicam Print Channel
-if "%progress_digicam_print_channel%"=="1" echo [X] Digicam Print Channel
-if "%progress_finishing%"=="0" echo [ ] Finishing...
-if "%progress_finishing%"=="1" echo [X] Finishing...
+if "%progress_downloading%"=="1" echo [STATUS] Downloading files
+if "%progress_wiinoma%"=="1" echo [STATUS] Wii no Ma
+if "%progress_digicam_print_channel%"=="1" echo [STATUS] Digicam Print Channel
+if "%progress_finishing%"=="1" echo [STATUS] Finishing...
 
 call :patching_fast_travel_%percent%
 if %percent%==5 goto 1_install_wiilink24_8
 
 set /a percent=%percent%+1
 goto 1_install_wiilink24_7
+
+:patching_fast_travel_5
+exit /b 0
+
+:patching_fast_travel_0
+exit /b 0
 
 :files_cleanup
 
@@ -1395,94 +918,24 @@ set /a progress_finishing=1
 exit /b 0
 
 :1_install_wiilink24_8
-cls
-echo.
-echo %header%
-echo %line%
-echo Patching done^^!
-echo.
-if "%sdcardstatus%"=="0" echo Please connect your Wii SD Card and copy apps and WAD folder to the root (main folder) of your SD Card.
-if "%sdcardstatus%"=="1" if "%sdcard%"=="NUL" echo Please connect your Wii SD Card and copy apps and WAD folder to the root (main folder) of your SD Card.
 
-if "%sdcardstatus%"=="1" if not "%sdcard%"=="NUL" if "%errorcopying%"=="0" echo Every file is in it's place on your SD Card^^!
-if "%sdcardstatus%"=="1" if not "%sdcard%"=="NUL" if "%errorcopying%"=="1" echo You can find these folders next to WiiLink24Patcher.bat
 echo.
-echo Please install the .WAD file on your Wii by using Wii Mod Lite.
-echo I also attached it with the WAD.
-echo.
-echo What next?
-echo.
-echo 1. Go back to main menu.
-echo 2. Exit
-echo.
-set /p s=Choose: 
-if %s%==1 goto begin_main
-if %s%==2 goto end
-goto 1_install_wiilink24_8
+echo Done! Please connect your Wii SD Card and copy apps and WAD folder to the root (main folder) of your SD Card.
+echo Install the .WAD file on your Wii by using Wii Mod Lite. It's bundled with the WAD.
+goto end
+
 :end
 set /a exiting=10
 set /a timeouterror=1
 timeout 1 /nobreak >NUL && set /a timeouterror=0
 goto end1
 :end1
-cls
-echo.
-echo %header%
-echo %line%
-echo  [*] Thanks for using WiiLink24 Patcher^^!
-echo.
-echo Closing the patcher in:
-echo.
-if %exiting%==10 echo :----------: 10
-if %exiting%==9 echo :--------- : 9
-if %exiting%==8 echo :--------  : 8
-if %exiting%==7 echo :-------   : 7
-if %exiting%==6 echo :------    : 6
-if %exiting%==5 echo :-----     : 5
-if %exiting%==4 echo :----      : 4
-if %exiting%==3 echo :---       : 3
-if %exiting%==2 echo :--        : 2
-if %exiting%==1 echo :-         : 1
-if %exiting%==0 echo :          :
-if %exiting%==0 exit
-if %timeouterror%==0 timeout 1 /nobreak >NUL
-if %timeouterror%==1 ping localhost -n 2 >NUL
-set /a exiting=%exiting%-1
+echo Thanks for using WiiLink24 Patcher^^!
+pause
 goto end1
 
 :error_patching
-cls
-echo %header%                                                                
-echo              `..````                                                  
-echo              yNNNNNNNNMNNmmmmdddhhhyyyysssooo+++/:--.`                
-echo              hNNNNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMd                
-echo              ddmNNd:dNMMMMNMMMMMMMMMMMMMMMMMMMMMMMMMMs                
-echo             `mdmNNy dNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM+        
-echo             .mmmmNs mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM:                
-echo             :mdmmN+`mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM.                
-echo             /mmmmN:-mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN            
-echo             ommmmN.:mMMMMMMMMMMMMmNMMMMMMMMMMMMMMMMMd                 
-echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy                 
-echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+                 
-echo ---------------------------------------------------------------------------------------------------------------------------
-echo    /---\   ERROR.
-echo   /     \  There was an error while patching.
-echo  /   ^^!   \ Error Code: %temperrorlev%
-echo  --------- Failing module: %modul% / %percent%
-echo.
-echo	Please contact KcrPL#4625 on Discord regarding this error.
-echo       Press any key to return to main menu.
-echo ---------------------------------------------------------------------------------------------------------------------------
-echo           :mdmmmo-mNNNNNNNNNNdyo++sssyNMMMMMMMMMhs+-                  
-echo          .+mmdhhmmmNNNNNNmdysooooosssomMMMNNNMMMm                     
-echo          o/ossyhdmmNNmdyo+++oooooosssoyNMMNNNMMMM+                    
-echo          o/::::::://++//+++ooooooo+oo++mNMMmNNMMMm                    
-echo         `o//::::::::+////+++++++///:/+shNMMNmNNmMM+                   
-echo         .o////////::+++++++oo++///+syyyymMmNmmmNMMm                   
-echo         -+//////////o+ooooooosydmdddhhsosNMMmNNNmho            `:/    
-echo         .+++++++++++ssss+//oyyysso/:/shmshhs+:.          `-/oydNNNy   
-echo           `..-:/+ooss+-`          +mmhdy`           -/shmNNNNNdy+:`   
-echo                   `.              yddyo++:    `-/oymNNNNNdy+:`        
-echo                                   -odhhhhyddmmmmmNNmhs/:`             
+echo ERROR: There was an error while patching. Error Code: %temperrorlev% | Failing module: %modul% / %percent%
+echo Please contact KcrPL#4625 on Discord regarding this error.
 pause>NUL
-goto begin_main
+exit
